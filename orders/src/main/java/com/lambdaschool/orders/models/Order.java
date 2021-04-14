@@ -21,7 +21,11 @@ public class Order {
 
     private String orderdescription;
 
-    @ManyToMany(mappedBy = "orders")
+    //@ManyToMany(mappedBy = "orders")
+    @ManyToMany()
+    @JoinTable(name = "orderspayments",
+        joinColumns = @JoinColumn(name = "ordnum"),
+        inverseJoinColumns = @JoinColumn(name= "paymentid"))
     private Set<Payment> payments = new HashSet<>();
 
     public Order() {
@@ -72,5 +76,13 @@ public class Order {
 
     public void setPayments(Set<Payment> payments) {
         this.payments = payments;
+    }
+
+    public String getOrderdescription() {
+        return orderdescription;
+    }
+
+    public void setOrderdescription(String orderdescription) {
+        this.orderdescription = orderdescription;
     }
 }

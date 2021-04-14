@@ -14,10 +14,11 @@ public class Payment {
     @Column(nullable = false)
     private String type;
 
-    @ManyToMany()
-    @JoinTable(name = "orderspayments",
-        joinColumns = @JoinColumn(name = "paymentid"),
-        inverseJoinColumns = @JoinColumn(name= "ordnum"))
+//    @ManyToMany()
+//    @JoinTable(name = "orderspayments",
+//        joinColumns = @JoinColumn(name = "paymentid"),
+//        inverseJoinColumns = @JoinColumn(name= "ordnum"))
+    @ManyToMany(mappedBy = "payments")
     Set<Order> orders = new HashSet<>();
 
     public Payment() {
